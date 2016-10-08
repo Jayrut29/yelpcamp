@@ -1,6 +1,5 @@
-
 var mongoose    = require("mongoose");
-var ycampgrounds    = require("./Ycampgrounds");
+
 var commentSchema = new mongoose.Schema({
     title       : String,
     author       : {

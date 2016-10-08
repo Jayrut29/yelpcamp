@@ -1,3 +1,22 @@
+body { 
+  background: url(/images/bg.jpeg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.landing-text {
+	color: #fff;
+}
+
+.landing-text a {
+	color: #fff;
+}
+
+.vertical-center-col {
+  margin-top: 30vh;
+}
+
 .thumbnail img{
     width: 100%;
     

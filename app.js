@@ -1,23 +1,25 @@
-var express     = require("express");
-var mongoose    = require("mongoose");
-var app         = express();
-var passport    = require("passport"),
-    LocalStrategy   = require("passport-local");
-var bodyParser  = require("body-parser");
-var ycampgrounds = require("./models/Ycampgrounds");
-var flash = require("connect-flash");
-var User    = require("./models/user");
-var seedDB = require("./seed");
-var methodOverride = require("method-override");
-var Comment = require("./models/comment");
-
+var  express        = require("express"),
+     mongoose       = require("mongoose"),
+     app            = express(),
+     passport       = require("passport"),
+    LocalStrategy   = require("passport-local"),
+     bodyParser     = require("body-parser"),
+     ycampgrounds   = require("./models/Ycampgrounds"),
+     flash          = require("connect-flash"),
+     User           = require("./models/user"),
+     seedDB         = require("./seed"),
+     methodOverride = require("method-override"),
+     Comment        = require("./models/comment");
+     
+    // Routes  
 var camproutes = require("./routes/campgrounds"),
     commentroutes = require("./routes/comments"),
     indexroutes  = require("./routes/index");
 
-//mongoose.connect("mongodb://localhost/yelp_camp");
-mongoose.connect(process.env.DATABASEURL);
-  //mongoose.connect("mongodb://jayrut:patel@ds053216.mlab.com:53216/jayrutcamp");
+//database connection
+var url = process.env.DATABASEURL || "mongodb://localhost/yelp_camp";
+mongoose.connect(url);
+
 app.set("view engine", "ejs");
  
 // seedDB(); seed the comment data
@@ -52,6 +54,11 @@ app.use(function(req, res, next){
    next();
 });
 
+app.use(function(req, res, next) {
+  res.locals.current_path = req.path;
+  next();
+});
+
 
 app.use("/",indexroutes);
 app.use("/campgrounds",camproutes);
@@ -59,5 +66,5 @@ app.use("/campgrounds/:id/comments",commentroutes);
 
 
 app.listen(process.env.PORT, process.env.ID, function(){
-   console.log("Yelpcamp Server is Running") 
+   console.log("The Yelpcamp Server is Running..") 
 });

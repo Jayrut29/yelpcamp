@@ -1,10 +1,9 @@
 var express = require("express");
 var router = express.Router();
-var passport    = require("passport");
+var passport = require("passport");
 var User = require("../models/user");
     
 router.get("/",function(req, res){
-  
    res.render("home"); 
 });
 
@@ -22,6 +21,7 @@ router.post("/register",function(req,res){
            return res.redirect("register");
        }else{
            passport.authenticate("local")(req,res,function(){
+               req.flash("success", "Welcome to YelpCamp " + user.username)
               res.redirect("/campgrounds") ;
            });
        }

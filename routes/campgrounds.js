@@ -24,11 +24,12 @@ router.post("/",middlewareObj.isLoggedIn,function(req,res){
     var name = req.body.name;
     var img = req.body.iurl;
     var desc = req.body.description;
+    var price = req.body.price;
     var author = {
         id : req.user._id,
         username : req.user.username
     }
-var newCamp = {name: name, image:img, description:desc , author:author};
+var newCamp = {name: name,price: price, image:img, description:desc , author:author};
 
     ycampgrounds.create(newCamp,function(err,ycadd){
         if(err){
