@@ -1,0 +1,29 @@
+ <% include ../partials/header %>
+
+<div class="container">
+    <div class="fluid">
+        <h1 style="text-align: center">Edit Comment </h1>
+        <div style="width:30%; margin: 0 auto">
+            
+            <form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+            
+                <div class="form-group">
+                <input class="form-control" type="text" name="commen[title]" value = "<%= comment.title %>">
+                </div>
+                <!--   <div class="form-group">-->
+                <!--<input class="form-control" type="text" placeholder="author" name="commen[author]">-->
+                <!--</div>-->
+                 
+                   <div class="form-group">
+                <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                
+                </div>
+                
+            </form>
+             <a href="/campgrounds">Explore all California Campgrounds</a>
+        </div>
+       
+    </div>
+</div>
+
+<% include ../partials/footer %>
